@@ -12,6 +12,45 @@ common:
   replication_factor: 1
   path_prefix: /loki
 
+# AGREGAR: Configuración para recibir logs
+ingester:
+  lifecycler:
+    address: 127.0.0.1
+    ring:
+      kvstore:
+        store: inmemory
+      replication_factor: 1
+    final_sleep: 0s
+  chunk_idle_period: 5m
+  chunk_retain_period: 30s
+
+# AGREGAR: Configuración para distribuir logs
+distributor:
+  ring:
+    kvstore:
+      store: inmemory
+
+# AGREGAR: Configuración para compilar queries
+query_range:
+  results_cache:
+    cache:
+      embedded_cache:
+        enabled: true
+        max_size_mb: 100
+
+# AGREGAR: Configuración para el ingester
+query_scheduler:
+  max_outstanding_requests_per_tenant: 2048
+
+# AGREGAR: Configuración para el frontend
+frontend:
+  compress_responses: true
+
+# AGREGAR: Configuración para el compactor
+compactor:
+  working_directory: /loki/compactor
+  shared_store: filesystem
+
 schema_config:
   configs:
   - from: 2025-01-01
