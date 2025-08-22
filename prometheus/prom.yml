@@ -11,14 +11,14 @@ scrape_configs:
   # sport-api
   - job_name: 'sport-api'
     static_configs:
-      - targets: ['https://sport-api-service.railway.internal:3002']
+      - targets: ['sport-api-service.railway.internal:3002']
     metrics_path: '/metrics'
     scrape_interval: 15s
 
   # sport-logic  
   - job_name: 'sport-logic'
     static_configs:
-      - targets: ['https://sport-logic-staging.up.railway.app']
+      - targets: ['sport-logic-staging.up.railway.app']
     metrics_path: '/metrics'
     scrape_interval: 15s
 
