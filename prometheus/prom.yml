@@ -11,7 +11,7 @@ scrape_configs:
   # sport-api
   - job_name: 'sport-api'
     static_configs:
-      - targets: ['sport-api-service.railway.internal:3002']
+      - targets: ['sport-api-service.railway.internal']
     metrics_path: '/metrics'
     scrape_interval: 15s
 
